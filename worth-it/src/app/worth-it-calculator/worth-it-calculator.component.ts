@@ -62,6 +62,22 @@ export class WorthItCalculatorComponent implements OnInit {
     return finalWorthItMessage;
   }
 
+  areFormControlsValid(): boolean {
+    const formControls = this.myForm.controls;
+    if (formControls['referenceName'].value !== null &&
+      formControls['referenceValue'].value !== null &&
+      formControls['newItemName'].value !== null &&
+      formControls['newItemValue'].value !== null) {
+      return (
+        formControls['referenceName'].value !== null &&
+        formControls['referenceValue'].value !== null &&
+        formControls['newItemName'].value !== null &&
+        formControls['newItemValue'].value !== null
+      );
+    }
+    return false;
+  }
+
   formatDecimal(decimalNumber: number): string {
     // Use the toFixed method to format the number to two decimal places
     return decimalNumber.toFixed(2);

@@ -1,11 +1,19 @@
 <div class="ui raised segment">
   <h2 class="ui header">
     <div class="inline-image-container">
-      <img class="inline-image" ngSrc="assets/images/worthit-32x32.png" alt="money" height="40" width="40">
+      <img class="inline-image" src="assets/images/worthit-32x32.png">
       Trade-Off Assessment Tool
+      <img class="inline-image" src="assets/images/worthit-32x32.png">
     </div>
   </h2>
   <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form" [class.error]="!myForm.valid && myForm.touched">
+    <div *ngIf="areFormControlsValid()" class="ui message">
+      {{ calculateQuantity() }}
+    </div>
+    <div *ngIf="!areFormControlsValid()" class="ui message">
+      Waiting for your input, below...
+    </div>
+
     <h4>Step 1 - Fill in your Golden Standard (reference) Info</h4>
     <div class="field">
       <label for="referenceNameInput">Golden Essential Name</label><br>
@@ -28,25 +36,12 @@
       <input type="number" id="newItemValueInput" placeholder="" formControlName="newItemValue">
     </div>
 
+    <br>
     <button (click)="resetForm()"
             class="ui button button-reset"
             title="Reset the form">
       <i class="fas fa-sync"></i>
     </button>
-    <br>
-
-    <h4>Step 3 - Check your Opportunity Cost !!!</h4>
-
   </form>
-
-
-  <div *ngIf="myForm.controls['referenceName'].value !== null &&
-              myForm.controls['referenceValue'].value !== null &&
-              myForm.controls['newItemName'].value !== null &&
-              myForm.controls['newItemValue'].value !== null"
-       class="ui message">
-
-    {{ calculateQuantity() }}
-  </div>
 
 </div>

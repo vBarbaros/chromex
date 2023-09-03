@@ -49,3 +49,8 @@
 .field input {
   text-align: left;
 }
+
+div .inline-image {
+  height: 25px;
+  width: 25px;
+}
